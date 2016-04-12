@@ -23,6 +23,14 @@ public abstract class Repo<T> {
         this.allColumns = allColumns;
     }
 
+    public SQLiteDatabase getDatabase() {
+        return database;
+    }
+
+    public String getTablename() {
+        return tablename;
+    }
+
     public String[] getAllColumns(){
         return allColumns;
     }

@@ -25,11 +25,12 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         textView = (TextView) findViewById(R.id.text);
         uow = new UOW(getApplicationContext());
+        displayOperatorsListView();
 
     }
-
-    private void displayOperandsListView(){
-        String s = "Tehete statistika";
+    //display how many times an operator has been used
+    private void displayOperatorsListView(){
+        String s = "Operaatorite statistika";
         textView.setText(s);
         OperandsAdapter adapter = new OperandsAdapter(this, uow.operandRepo.getCursorAll(), uow); //TODO adapter lõpuni teha
         listView.setAdapter(adapter);
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayStatisticsListView(){
-
+        String s = "";
     }
 
     @Override

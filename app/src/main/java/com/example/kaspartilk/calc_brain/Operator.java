@@ -3,9 +3,9 @@ package com.example.kaspartilk.calc_brain;
 /**
  * Created by KasparTilk on 10.04.2016.
  */
-public class Operand {
+public class Operator {
     private long id;
-    private String operand;
+    private String operator;
     private int lifetimeCounter;
 
     public long getId() {
@@ -16,12 +16,12 @@ public class Operand {
         this.id = id;
     }
 
-    public String getOperand() {
-        return operand;
+    public String getOperator() {
+        return operator;
     }
 
-    public void setOperand(String operand) {
-        this.operand = operand;
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public int getLifetimeCounter() {

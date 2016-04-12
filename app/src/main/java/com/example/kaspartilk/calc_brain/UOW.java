@@ -33,4 +33,8 @@ public class UOW {
     public void close() {
         dbHelper.close();
     }
+
+    public void addStatistics(String operator, Double num1, Double num2, Double answer){
+        Operator op = operandRepo.getByOperator(operator);
+    }
 }

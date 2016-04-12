@@ -9,7 +9,7 @@ import android.os.Bundle;
 /**
  * Created by KasparTilk on 11.04.2016.
  */
-public class Reciever extends BroadcastReceiver {
+public class Receiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (isOrderedBroadcast()){
@@ -19,7 +19,7 @@ public class Reciever extends BroadcastReceiver {
                 // Take values from extras
                 Double num1 = ex.getDouble("numero1");
                 Double num2 = ex.getDouble("numero2");
-                String op = ex.getString("operand");
+                String op = ex.getString("operator");
                 // Calculate answer
                 Double answer = calculate(num1, num2, op);
                 //operation succeeded
@@ -27,7 +27,7 @@ public class Reciever extends BroadcastReceiver {
                 setResultCode(Activity.RESULT_OK);
                 setResultData(answer.toString());
                 //Add data to db
-                //TODO baasi lisamine
+                uow.addStatistics(op, num1, num2, answer);
             }
 
         }
