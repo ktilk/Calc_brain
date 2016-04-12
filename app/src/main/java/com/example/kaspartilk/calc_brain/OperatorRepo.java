@@ -7,9 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 /**
  * Created by KasparTilk on 10.04.2016.
  */
-public class OperandRepo extends Repo<Operator> {
+public class OperatorRepo extends Repo<Operator> {
 
-    public OperandRepo(SQLiteDatabase database, String tablename, String[] allColumns) {
+    public OperatorRepo(SQLiteDatabase database, String tablename, String[] allColumns) {
         super(database, tablename, allColumns);
     }
 

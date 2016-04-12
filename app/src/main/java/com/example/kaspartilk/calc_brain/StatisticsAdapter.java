@@ -33,7 +33,7 @@ public class StatisticsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         //TextView textViewName = (TextView) view.findViewById(R.id.name);
-        //Operator operand = uow.operandRepo.cursorToEntity(cursor);
+        //Operator operand = uow.operatorRepo.cursorToEntity(cursor);
         //textViewName.setText(operand.getOperator());
         //display
     }

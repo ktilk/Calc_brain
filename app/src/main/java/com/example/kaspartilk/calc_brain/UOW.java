@@ -13,7 +13,7 @@ public class UOW {
 
     private final Context context;
 
-    public OperandRepo operandRepo;
+    public OperatorRepo operatorRepo;
     public OperationRepo operationRepo;
     public StatisticsRepo statisticsRepo;
 
@@ -25,7 +25,7 @@ public class UOW {
 
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
-        operandRepo = new OperandRepo(database, dbHelper.TABLE_OPERANDS, dbHelper.OPERANDS_ALLCOLUMNS);
+        operatorRepo = new OperatorRepo(database, dbHelper.TABLE_OPERATORS, dbHelper.OPERATORS_ALLCOLUMNS);
         operationRepo = new OperationRepo(database, dbHelper.TABLE_OPERATIONS, dbHelper.OPERATIONS_ALLCOLUMNS);
         statisticsRepo = new StatisticsRepo(database, dbHelper.TABLE_STATISTICS, dbHelper.STATISTICS_ALLCOLUMNS);
     }
@@ -35,6 +35,6 @@ public class UOW {
     }
 
     public void addStatistics(String operator, Double num1, Double num2, Double answer){
-        Operator op = operandRepo.getByOperator(operator);
+        Operator op = operatorRepo.getByOperator(operator);
     }
 }

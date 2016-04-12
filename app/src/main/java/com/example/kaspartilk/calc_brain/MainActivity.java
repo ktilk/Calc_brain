@@ -1,11 +1,8 @@
 package com.example.kaspartilk.calc_brain;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -32,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private void displayOperatorsListView(){
         String s = "Operaatorite statistika";
         textView.setText(s);
-        OperandsAdapter adapter = new OperandsAdapter(this, uow.operandRepo.getCursorAll(), uow); //TODO adapter lõpuni teha
+        OperatorsAdapter adapter = new OperatorsAdapter(this, uow.operatorRepo.getCursorAll(), uow); //TODO adapter lõpuni teha
         listView.setAdapter(adapter);
     }
 

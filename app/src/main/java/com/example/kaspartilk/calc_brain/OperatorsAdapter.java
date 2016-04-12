@@ -11,13 +11,13 @@ import android.widget.TextView;
 /**
  * Created by KasparTilk on 11.04.2016.
  */
-public class OperandsAdapter extends CursorAdapter {
+public class OperatorsAdapter extends CursorAdapter {
 
     private final LayoutInflater layoutInflater;
     private UOW uow;
     private ViewGroup parentViewGroup;
 
-    public OperandsAdapter(Context context, Cursor c, UOW uow) {
+    public OperatorsAdapter(Context context, Cursor c, UOW uow) {
         super(context, c, 0);
         layoutInflater = LayoutInflater.from(context);
         this.uow = uow;
@@ -25,7 +25,7 @@ public class OperandsAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        final View view = layoutInflater.inflate(R.layout.op_statistics, parent, false);
+        final View view = layoutInflater.inflate(R.layout.operator_statistics, parent, false);
         parentViewGroup = parent;
         return view;
     }
@@ -33,7 +33,7 @@ public class OperandsAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView textViewOperatorData = (TextView) view.findViewById(R.id.data);
-        Operator operator = uow.operandRepo.cursorToEntity(cursor);
+        Operator operator = uow.operatorRepo.cursorToEntity(cursor);
         textViewOperatorData.setText("Tehet " + operator.getOperator() + " on kasutatud " + operator.getLifetimeCounter() + " korda.");
     }
 
