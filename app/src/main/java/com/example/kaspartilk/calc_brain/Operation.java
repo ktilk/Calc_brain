@@ -5,15 +5,15 @@ import java.util.Date;
 /**
  * Created by KasparTilk on 10.04.2016.
  */
-public class Operation {
+public class Operation implements IEntity {
     private long id;
     private long operatorId;
-    private float num1;
-    private float num2;
-    private float res;
+    private double num1;
+    private double num2;
+    private double res;
     private int timestamp;
 
-    public Operation(long opId, float num1, float num2, float res){
+    public Operation(long opId, double num1, double num2, double res){
         this.operatorId = opId;
         this.num1 = num1;
         this.num2 = num2;
@@ -39,27 +39,27 @@ public class Operation {
         this.operatorId = operatorId;
     }
 
-    public float getNum1() {
+    public double getNum1() {
         return num1;
     }
 
-    public void setNum1(float num1) {
+    public void setNum1(double num1) {
         this.num1 = num1;
     }
 
-    public float getNum2() {
+    public double getNum2() {
         return num2;
     }
 
-    public void setNum2(float num2) {
+    public void setNum2(double num2) {
         this.num2 = num2;
     }
 
-    public float getRes() {
+    public double getRes() {
         return res;
     }
 
-    public void setRes(float res) {
+    public void setRes(double res) {
         this.res = res;
     }
 

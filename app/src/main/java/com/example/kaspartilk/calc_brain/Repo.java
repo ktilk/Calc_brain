@@ -11,7 +11,7 @@ import java.util.List;
  * Created by KasparTilk on 10.04.2016.
  */
 //crud
-public abstract class Repo<T> {
+public abstract class Repo<T extends IEntity> {
 
     private SQLiteDatabase database;
     private String tablename;
@@ -56,7 +56,16 @@ public abstract class Repo<T> {
         ContentValues values = entityToContentValues(entity);
         long insertId = database.insert(tablename, null,
                 values);
-        return getById(insertId);
+
+        Cursor cursor = database.query(tablename,
+                allColumns, allColumns[0] + " = " + insertId,
+                null, null, null, null);
+
+        cursor.moveToFirst();
+        T newEntity = cursorToEntity(cursor); //TODO broken
+
+        cursor.close();
+        return newEntity;
     }
 
     public T getById(long id){
@@ -72,22 +81,20 @@ public abstract class Repo<T> {
     public Cursor getCursorAll(){
         Cursor cursor = database.query(tablename,
                 allColumns, null, null, null, null, null);
-
         cursor.moveToFirst();
-
         return cursor;
     }
-    //TODO update
+
     public void update(T entity){
-
+        ContentValues values = entityToContentValues(entity);
+        database.update(tablename, values, allColumns[0] + "=" + entity.getId(), null);
     }
-    //TODO delete
     public void delete(T entity){
-
+        long id = entity.getId();
+        delete(id);
     }
-    //TODO delete
     public void delete(long id){
-
+        database.delete(tablename, allColumns[0] + "=" + id, null); // DELETE FROM tablename WHERE id = id
     }
 
     public abstract ContentValues entityToContentValues(T entity);

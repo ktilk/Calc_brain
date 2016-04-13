@@ -16,11 +16,11 @@ public class OperationRepo extends Repo<Operation> {
     @Override
     public ContentValues entityToContentValues(Operation entity) {
         ContentValues values = new ContentValues();
-        values.put(getAllColumns()[1], entity.getOperatorId());
-        values.put(getAllColumns()[2], entity.getNum1());
-        values.put(getAllColumns()[3], entity.getNum2());
-        values.put(getAllColumns()[4], entity.getRes());
-        values.put(getAllColumns()[5], entity.getTimestamp());
+        values.put(SQLiteHelper.OPERATIONS_COLUMN_OPERATORID, entity.getOperatorId());
+        values.put(SQLiteHelper.OPERATIONS_COLUMN_NUM1, entity.getNum1());
+        values.put(SQLiteHelper.OPERATIONS_COLUMN_NUM2, entity.getNum2());
+        values.put(SQLiteHelper.OPERATIONS_COLUMN_RES, entity.getRes());
+        values.put(SQLiteHelper.OPERATIONS_COLUMN_TIMESTAMP, entity.getTimestamp());
         return values;
     }
 

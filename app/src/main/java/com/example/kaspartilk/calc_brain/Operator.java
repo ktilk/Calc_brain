@@ -3,7 +3,7 @@ package com.example.kaspartilk.calc_brain;
 /**
  * Created by KasparTilk on 10.04.2016.
  */
-public class Operator {
+public class Operator implements IEntity {
     private long id;
     private String operator;
     private int lifetimeCounter = 0;

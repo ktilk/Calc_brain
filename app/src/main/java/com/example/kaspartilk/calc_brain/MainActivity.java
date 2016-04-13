@@ -23,25 +23,28 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         textView = (TextView) findViewById(R.id.text);
         uow = new UOW(getApplicationContext());
+        uow.dropCreateDatabase();
         //uow.seedDatabase();
         //displayOperatorsListView();
 
     }
     //display how many times an operator has been used
     private void displayOperatorsListView(){
-        String s = "Operaatorite statistika";
+        String s = "Operator statistics";
         textView.setText(s);
         OperatorsAdapter adapter = new OperatorsAdapter(this, uow.operatorRepo.getCursorAll(), uow); //TODO adapter lõpuni teha
         listView.setAdapter(adapter);
     }
 
     private void displayOperationsListView(){
-        String s = "Kõik arvutused";
+        String s = "All operations";
         textView.setText(s);
     }
 
     private void displayStatisticsListView(){
-        String s = "";
+
+        String s = "Daily statistics";
+        textView.setText(s);
     }
 
     @Override
@@ -59,9 +62,15 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.operator_statistics) {
-            return true;
+        if (id == R.id.action_operator_statistics) {
+            displayOperatorsListView();
         }else if (id == R.id.action_database_manager){
+            displayDatabase();
+        }else if (id == R.id.action_operations){
+            displayDatabase();
+        }else if (id == R.id.action_day_statistics){
+            displayDatabase();
+        }else if (id == R.id.action_delete_statistics){
             displayDatabase();
         }
 

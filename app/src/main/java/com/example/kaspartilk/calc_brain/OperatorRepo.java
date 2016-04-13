@@ -16,8 +16,8 @@ public class OperatorRepo extends Repo<Operator> {
     @Override
     public ContentValues entityToContentValues(Operator entity) {
         ContentValues values = new ContentValues();
-        values.put(getAllColumns()[1], entity.getOperator());
-        values.put(getAllColumns()[2], entity.getLifetimeCounter());
+        values.put(SQLiteHelper.OPERATORS_COLUMN_OPERATOR, entity.getOperator());
+        values.put(SQLiteHelper.OPERATORS_COLUMN_LIFETIMECOUNTER, entity.getLifetimeCounter());
         return values;
     }
 
@@ -31,22 +31,12 @@ public class OperatorRepo extends Repo<Operator> {
     }
 
     public Operator getByOperator(String op) {
-        Operator newOfEntity;
+        Operator entity;
         Cursor cursor = getDatabase().query(getTablename(),
-                getAllColumns(), getAllColumns()[1] + " = '" + op +"'",
+                getAllColumns(), getAllColumns()[1] + " = '" + op +"'", // SELECT * FROM operators WHERE operator = op
                 null, null, null, null);
-
-        if (cursor == null || cursor.getCount()<1) {
-            //lisame
-            Operator opObj = new Operator();
-            opObj.setOperator(op);
-            opObj.setLifetimeCounter(0);
-            newOfEntity = add(opObj);
-        } else {
-            cursor.moveToFirst();
-            newOfEntity = cursorToEntity(cursor);
-        }
-
-        return newOfEntity;
+        cursor.moveToFirst();
+        entity = cursorToEntity(cursor);
+        return entity;
     }
 }

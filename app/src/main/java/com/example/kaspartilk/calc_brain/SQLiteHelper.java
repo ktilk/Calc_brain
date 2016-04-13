@@ -16,14 +16,14 @@ import java.util.ArrayList;
 public class SQLiteHelper extends SQLiteOpenHelper{
 
     public static final String TABLE_OPERATORS = "operators";
-    public static final String OPERATORS_COLUMN_ID = "_id";
+    public static final String OPERATORS_COLUMN_ID = "id";
     public static final String OPERATORS_COLUMN_OPERATOR = "operator";
-    public static final String OPERATORS_COLUMN_LIFETIMECOUNTER = "lifetimecounter";
+    public static final String OPERATORS_COLUMN_LIFETIMECOUNTER = "lifetimeCounter";
     public static final String[] OPERATORS_ALLCOLUMNS =
             { OPERATORS_COLUMN_ID, OPERATORS_COLUMN_OPERATOR, OPERATORS_COLUMN_LIFETIMECOUNTER };
 
     public static final String TABLE_OPERATIONS = "operations";
-    public static final String OPERATIONS_COLUMN_ID = "_id";
+    public static final String OPERATIONS_COLUMN_ID = "id";
     public static final String OPERATIONS_COLUMN_OPERATORID = "operatorId";
     public static final String OPERATIONS_COLUMN_NUM1 = "num1";
     public static final String OPERATIONS_COLUMN_NUM2 = "num2";
@@ -33,12 +33,12 @@ public class SQLiteHelper extends SQLiteOpenHelper{
             { OPERATIONS_COLUMN_ID, OPERATIONS_COLUMN_OPERATORID, OPERATIONS_COLUMN_NUM1, OPERATIONS_COLUMN_NUM2, OPERATIONS_COLUMN_RES, OPERATIONS_COLUMN_TIMESTAMP };
 
     public static final String TABLE_STATISTICS = "day_statistics";
-    public static final String STATISTICS_COLUMN_ID = "_id";
-    public static final String STATISTICS_COLUMN_DAYSTAMP = "daystamp";
+    public static final String STATISTICS_COLUMN_ID = "id";
+    public static final String STATISTICS_COLUMN_DAYSTAMP = "dayStamp";
     public static final String STATISTICS_COLUMN_OPERATORID = "operatorId";
-    public static final String STATISTICS_COLUMN_DAYCOUNTER = "daycounter";
+    public static final String STATISTICS_COLUMN_DAYCOUNTER = "dayCounter";
     public static final String[] STATISTICS_ALLCOLUMNS =
-            { STATISTICS_COLUMN_ID, STATISTICS_COLUMN_OPERATORID, STATISTICS_COLUMN_DAYCOUNTER };
+            { STATISTICS_COLUMN_ID, STATISTICS_COLUMN_DAYSTAMP, STATISTICS_COLUMN_OPERATORID, STATISTICS_COLUMN_DAYCOUNTER };
 
     private static final String DATABASE_NAME = "calculatordb.db";
     private static final int DATABASE_VERSION = 2;
@@ -47,23 +47,23 @@ public class SQLiteHelper extends SQLiteOpenHelper{
             + TABLE_OPERATORS + "("
             + OPERATORS_COLUMN_ID + " integer primary key autoincrement, "
             + OPERATORS_COLUMN_OPERATOR + " text not null, "
-            + OPERATORS_COLUMN_LIFETIMECOUNTER + "integer not null);";
+            + OPERATORS_COLUMN_LIFETIMECOUNTER + " integer not null);";
 
     private static final String DATABASE_CREATE_OPERATIONS = "create table "
             + TABLE_OPERATIONS + "("
             + OPERATIONS_COLUMN_ID + " integer primary key autoincrement, "
             + OPERATIONS_COLUMN_OPERATORID + " integer not null, "
-            + OPERATIONS_COLUMN_NUM1 + "text not null, "
-            + OPERATIONS_COLUMN_NUM2 + "text not null, "
-            + OPERATIONS_COLUMN_RES + "text not null, "
-            + OPERATIONS_COLUMN_TIMESTAMP + "integer not null);";
+            + OPERATIONS_COLUMN_NUM1 + " text not null, "
+            + OPERATIONS_COLUMN_NUM2 + " text not null, "
+            + OPERATIONS_COLUMN_RES + " text not null, "
+            + OPERATIONS_COLUMN_TIMESTAMP + " integer not null);";
 
     private static final String DATABASE_CREATE_STATISTICS = "create table "
             + TABLE_STATISTICS + "("
             + STATISTICS_COLUMN_DAYSTAMP + " integer not null, "
             + STATISTICS_COLUMN_ID + " integer primary key autoincrement, "
             + STATISTICS_COLUMN_OPERATORID + " integer not null, "
-            + STATISTICS_COLUMN_DAYCOUNTER + "integer not null);";
+            + STATISTICS_COLUMN_DAYCOUNTER + " integer not null);";
 
     public SQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -85,6 +85,18 @@ public class SQLiteHelper extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPERATIONS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
         onCreate(db);
+    }
+
+    public void dropCreateDatabase(SQLiteDatabase db){
+        //Kustuta need read:
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPERATORS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_OPERATIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_STATISTICS);
+        //Tekita need read:
+        db.execSQL(DATABASE_CREATE_OPERATORS);
+        db.execSQL(DATABASE_CREATE_OPERATIONS);
+        db.execSQL(DATABASE_CREATE_STATISTICS);
+
     }
 
     public ArrayList<Cursor> getData(String Query){

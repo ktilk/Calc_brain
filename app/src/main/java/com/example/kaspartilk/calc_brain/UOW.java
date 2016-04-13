@@ -20,7 +20,7 @@ public class UOW {
     public UOW(Context context){
         this.context = context;
         dbHelper = new SQLiteHelper(context);
-        this.open();
+        open();
     }
 
     public void open() throws SQLException {
@@ -34,15 +34,26 @@ public class UOW {
         dbHelper.close();
     }
 
+    public void dropCreateDatabase() {
+        dbHelper.dropCreateDatabase(database);
+        seedDatabase();
+    }
+
     public void addStatistics(String operator, Double num1, Double num2, Double answer){
         Operator op = operatorRepo.getByOperator(operator);
+        //increment lifetime counter by one
+        op.setLifetimeCounter(op.getLifetimeCounter()+1);
+        operatorRepo.update(op);
+        //add new operation to database
+        operationRepo.add(new Operation(op.getId(), num1, num2, answer));
+        // increment daily counter
+        statisticsRepo.incrementDayCounter(op.getId());
     }
     public void seedDatabase(){
-        Operator operator1 = operatorRepo.add(new Operator("+"));
-        Operator operator2 = operatorRepo.add(new Operator("-"));
-
-        operationRepo.add(new Operation(1, 2, 2, 4)); // 2 + 2 = 4
-        operationRepo.add(new Operation(2, 2, 2, 0)); // 2 - 2 = 0
-
+        operatorRepo.add(new Operator("+"));
+        operatorRepo.add(new Operator("-"));
+        operatorRepo.add(new Operator("*"));
+        operatorRepo.add(new Operator("/"));
+        statisticsRepo.add(new Statistics(20160413, 1, 1));
     }
 }
