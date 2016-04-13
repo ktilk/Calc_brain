@@ -16,8 +16,8 @@ public class StatisticsRepo extends Repo<Statistics> {
     @Override
     public ContentValues entityToContentValues(Statistics entity) {
         ContentValues values = new ContentValues();
-        values.put(getAllColumns()[1], entity.getDaystamp());
-        values.put(getAllColumns()[2], entity.getOperandId());
+        values.put(getAllColumns()[1], entity.getDayStamp());
+        values.put(getAllColumns()[2], entity.getOperatorId());
         values.put(getAllColumns()[3], entity.getDayCounter());
         return values;
     }
@@ -26,8 +26,8 @@ public class StatisticsRepo extends Repo<Statistics> {
     public Statistics cursorToEntity(Cursor cursor) {
         Statistics statistics = new Statistics();
         statistics.setId(cursor.getLong(0));
-        statistics.setDaystamp(cursor.getInt(1));
-        statistics.setOperandId(cursor.getInt(2));
+        statistics.setDayStamp(cursor.getInt(1));
+        statistics.setOperatorId(cursor.getInt(2));
         statistics.setDayCounter(cursor.getInt(3));
         return statistics;
     }

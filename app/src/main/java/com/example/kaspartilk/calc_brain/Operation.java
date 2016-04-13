@@ -1,15 +1,24 @@
 package com.example.kaspartilk.calc_brain;
 
+import java.util.Date;
+
 /**
  * Created by KasparTilk on 10.04.2016.
  */
 public class Operation {
     private long id;
-    private long operandId;
+    private long operatorId;
     private float num1;
     private float num2;
     private float res;
     private int timestamp;
+
+    public Operation(long opId, float num1, float num2, float res){
+        this.operatorId = opId;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.res = res;
+    }
 
     public long getId() {
         return id;
@@ -19,12 +28,12 @@ public class Operation {
         this.id = id;
     }
 
-    public long getOperandId() {
-        return operandId;
+    public long getOperatorId() {
+        return operatorId;
     }
 
-    public void setOperandId(long operandId) {
-        this.operandId = operandId;
+    public void setOperatorId(long operatorId) {
+        this.operatorId = operatorId;
     }
 
     public float getNum1() {

@@ -16,7 +16,7 @@ public class OperationRepo extends Repo<Operation> {
     @Override
     public ContentValues entityToContentValues(Operation entity) {
         ContentValues values = new ContentValues();
-        values.put(getAllColumns()[1], entity.getOperandId());
+        values.put(getAllColumns()[1], entity.getOperatorId());
         values.put(getAllColumns()[2], entity.getNum1());
         values.put(getAllColumns()[3], entity.getNum2());
         values.put(getAllColumns()[4], entity.getRes());
@@ -28,7 +28,7 @@ public class OperationRepo extends Repo<Operation> {
     public Operation cursorToEntity(Cursor cursor) {
         Operation operation = new Operation();
         operation.setId(cursor.getLong(0));
-        operation.setOperandId(cursor.getInt(1));
+        operation.setOperatorId(cursor.getInt(1));
         operation.setNum1(cursor.getFloat(2));
         operation.setNum2(cursor.getFloat(3));
         operation.setRes(cursor.getFloat(4));

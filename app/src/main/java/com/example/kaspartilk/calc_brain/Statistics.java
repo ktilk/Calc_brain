@@ -5,8 +5,8 @@ package com.example.kaspartilk.calc_brain;
  */
 public class Statistics {
     private long id;
-    private int daystamp;
-    private long operandId;
+    private int dayStamp;
+    private long operatorId;
     private int dayCounter;
 
     public long getId() {
@@ -17,20 +17,20 @@ public class Statistics {
         this.id = id;
     }
 
-    public int getDaystamp() {
-        return daystamp;
+    public int getDayStamp() {
+        return dayStamp;
     }
 
-    public void setDaystamp(int daystamp) {
-        this.daystamp = daystamp;
+    public void setDayStamp(int dayStamp) {
+        this.dayStamp = dayStamp;
     }
 
-    public long getOperandId() {
-        return operandId;
+    public long getOperatorId() {
+        return operatorId;
     }
 
-    public void setOperandId(long operandId) {
-        this.operandId = operandId;
+    public void setOperatorId(long operatorId) {
+        this.operatorId = operatorId;
     }
 
     public int getDayCounter() {

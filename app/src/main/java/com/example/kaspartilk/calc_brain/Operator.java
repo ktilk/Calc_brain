@@ -6,7 +6,13 @@ package com.example.kaspartilk.calc_brain;
 public class Operator {
     private long id;
     private String operator;
-    private int lifetimeCounter;
+    private int lifetimeCounter = 0;
+
+    public Operator(){}
+
+    public Operator(String operator){
+        this.operator = operator;
+    }
 
     public long getId() {
         return id;

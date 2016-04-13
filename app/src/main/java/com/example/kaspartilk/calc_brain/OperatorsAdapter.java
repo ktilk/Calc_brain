@@ -32,7 +32,7 @@ public class OperatorsAdapter extends CursorAdapter {
     //TODO bindView
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        TextView textViewOperatorData = (TextView) view.findViewById(R.id.data);
+        TextView textViewOperatorData = (TextView) view.findViewById(R.id.operator_statistics);
         Operator operator = uow.operatorRepo.cursorToEntity(cursor);
         textViewOperatorData.setText("Tehet " + operator.getOperator() + " on kasutatud " + operator.getLifetimeCounter() + " korda.");
     }

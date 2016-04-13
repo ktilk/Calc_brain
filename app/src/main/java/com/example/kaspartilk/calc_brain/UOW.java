@@ -37,4 +37,11 @@ public class UOW {
     public void addStatistics(String operator, Double num1, Double num2, Double answer){
         Operator op = operatorRepo.getByOperator(operator);
     }
+    public void seedDatabase(){
+        Operator operator1 = operatorRepo.add(new Operator("+"));
+        Operator operator2 = operatorRepo.add(new Operator("-"));
+
+        operationRepo.add(new Operation());
+
+    }
 }
