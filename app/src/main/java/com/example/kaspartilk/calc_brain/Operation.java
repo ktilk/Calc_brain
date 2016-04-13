@@ -18,7 +18,10 @@ public class Operation {
         this.num1 = num1;
         this.num2 = num2;
         this.res = res;
+        timestamp = (int) new Date().getTime(); // integeri kuupäevaks muutmine : http://stackoverflow.com/a/3371337/5580816
     }
+
+    public Operation(){}
 
     public long getId() {
         return id;

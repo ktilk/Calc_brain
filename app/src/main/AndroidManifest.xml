@@ -13,6 +13,8 @@
                 <action android:name="com.example.kaspartilk.CALCULATE" />
             </intent-filter>
         </receiver>
+        <activity android:name="com.example.kaspartilk.calc_brain.AndroidDatabaseManager"
+            android:theme="@style/Theme.AppCompat.Light"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

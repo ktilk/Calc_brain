@@ -41,7 +41,8 @@ public class UOW {
         Operator operator1 = operatorRepo.add(new Operator("+"));
         Operator operator2 = operatorRepo.add(new Operator("-"));
 
-        operationRepo.add(new Operation());
+        operationRepo.add(new Operation(1, 2, 2, 4)); // 2 + 2 = 4
+        operationRepo.add(new Operation(2, 2, 2, 0)); // 2 - 2 = 0
 
     }
 }

@@ -1,5 +1,6 @@
 package com.example.kaspartilk.calc_brain;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -22,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.list);
         textView = (TextView) findViewById(R.id.text);
         uow = new UOW(getApplicationContext());
-        displayOperatorsListView();
+        //uow.seedDatabase();
+        //displayOperatorsListView();
 
     }
     //display how many times an operator has been used
@@ -59,8 +61,14 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.operator_statistics) {
             return true;
+        }else if (id == R.id.action_database_manager){
+            displayDatabase();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    public void displayDatabase(){
+        Intent dbmanager = new Intent(getApplicationContext(),AndroidDatabaseManager.class);
+        startActivity(dbmanager);
     }
 }
