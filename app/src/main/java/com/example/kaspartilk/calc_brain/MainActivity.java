@@ -102,4 +102,9 @@ public class MainActivity extends AppCompatActivity {
         Intent dbmanager = new Intent(getApplicationContext(),AndroidDatabaseManager.class);
         startActivity(dbmanager);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayOperatorsListView();
+    }
 }

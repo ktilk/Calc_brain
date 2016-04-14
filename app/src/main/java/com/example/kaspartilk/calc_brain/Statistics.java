@@ -52,7 +52,19 @@ public class Statistics implements IEntity{
 
     @Override
     public String toString(){
-        return "Date: " + dayStamp + " Operator: " + operator + " Number of operations: " + dayCounter;
+        String date = convertDayStampToDate(dayStamp);
+        return "Date: " + date + " Operator: " + operator + " Number of operations: " + dayCounter;
+    }
+
+    public String convertDayStampToDate(int stampInt){
+        String stamp = stampInt + "";
+        StringBuilder sb = new StringBuilder();
+        sb.append(stamp.substring(6, 8));
+        sb.append(".");
+        sb.append(stamp.substring(4, 6));
+        sb.append(".");
+        sb.append(stamp.substring(0, 4));
+        return sb.toString();
     }
 
     public String getOperator() {
