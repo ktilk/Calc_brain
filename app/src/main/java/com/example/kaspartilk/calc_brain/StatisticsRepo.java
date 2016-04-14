@@ -47,7 +47,7 @@ public class StatisticsRepo extends Repo<Statistics> {
     public Statistics incrementDayCounter(long id){
         Statistics stats;
         int dayStamp = getDayStamp();
-        Cursor cursor = getDatabase().query(getTablename(), getAllColumns(), getAllColumns()[1] + "=" + id + " and " + getAllColumns()[2] + "=" + dayStamp, null, null, null, null);
+        Cursor cursor = getDatabase().query(getTablename(), getAllColumns(), getAllColumns()[1] + "=" + dayStamp + " and " + getAllColumns()[2] + "=" + id, null, null, null, null);
         //if demanded row is not in database, add a row
         if(cursor == null || cursor.getCount() < 1){
             Statistics newStats = new Statistics();
