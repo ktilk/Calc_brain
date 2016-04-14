@@ -16,14 +16,14 @@ import java.util.ArrayList;
 public class SQLiteHelper extends SQLiteOpenHelper{
 
     public static final String TABLE_OPERATORS = "operators";
-    public static final String OPERATORS_COLUMN_ID = "id";
+    public static final String OPERATORS_COLUMN_ID = "_id";
     public static final String OPERATORS_COLUMN_OPERATOR = "operator";
     public static final String OPERATORS_COLUMN_LIFETIMECOUNTER = "lifetimeCounter";
     public static final String[] OPERATORS_ALLCOLUMNS =
             { OPERATORS_COLUMN_ID, OPERATORS_COLUMN_OPERATOR, OPERATORS_COLUMN_LIFETIMECOUNTER };
 
     public static final String TABLE_OPERATIONS = "operations";
-    public static final String OPERATIONS_COLUMN_ID = "id";
+    public static final String OPERATIONS_COLUMN_ID = "_id";
     public static final String OPERATIONS_COLUMN_OPERATORID = "operatorId";
     public static final String OPERATIONS_COLUMN_NUM1 = "num1";
     public static final String OPERATIONS_COLUMN_NUM2 = "num2";
@@ -33,7 +33,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
             { OPERATIONS_COLUMN_ID, OPERATIONS_COLUMN_OPERATORID, OPERATIONS_COLUMN_NUM1, OPERATIONS_COLUMN_NUM2, OPERATIONS_COLUMN_RES, OPERATIONS_COLUMN_TIMESTAMP };
 
     public static final String TABLE_STATISTICS = "day_statistics";
-    public static final String STATISTICS_COLUMN_ID = "id";
+    public static final String STATISTICS_COLUMN_ID = "_id";
     public static final String STATISTICS_COLUMN_DAYSTAMP = "dayStamp";
     public static final String STATISTICS_COLUMN_OPERATORID = "operatorId";
     public static final String STATISTICS_COLUMN_DAYCOUNTER = "dayCounter";
@@ -99,6 +99,7 @@ public class SQLiteHelper extends SQLiteOpenHelper{
 
     }
 
+    //code from https://github.com/sanathp/DatabaseManager_For_Android
     public ArrayList<Cursor> getData(String Query){
         //get writable database
         SQLiteDatabase sqlDB = this.getWritableDatabase();

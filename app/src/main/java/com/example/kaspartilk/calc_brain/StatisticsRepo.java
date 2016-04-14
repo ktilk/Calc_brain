@@ -13,8 +13,9 @@ import java.util.Date;
  */
 public class StatisticsRepo extends Repo<Statistics> {
     OperatorRepo operatorRepo;
-    public StatisticsRepo(SQLiteDatabase database, String tablename, String[] allColumns) {
+    public StatisticsRepo(SQLiteDatabase database, String tablename, String[] allColumns, OperatorRepo opRepo) {
         super(database, tablename, allColumns);
+        operatorRepo = opRepo;
     }
 
     @Override
@@ -33,8 +34,8 @@ public class StatisticsRepo extends Repo<Statistics> {
         statistics.setDayStamp(cursor.getInt(1));
         statistics.setOperatorId(cursor.getInt(2));
         statistics.setDayCounter(cursor.getInt(3));
-//        Operator operator = operatorRepo.getById(statistics.getOperatorId());
-//        statistics.setOperator(operator.getOperator());
+        Operator operator = operatorRepo.getById(statistics.getOperatorId());
+        statistics.setOperator(operator.getOperator());
         return statistics;
     }
 

@@ -1,5 +1,7 @@
 package com.example.kaspartilk.calc_brain;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -13,12 +15,14 @@ public class Operation implements IEntity {
     private double res;
     private int timestamp;
 
+    private String operator;
+
     public Operation(long opId, double num1, double num2, double res){
         this.operatorId = opId;
         this.num1 = num1;
         this.num2 = num2;
         this.res = res;
-        timestamp = (int) new Date().getTime(); // integeri kuupäevaks muutmine : http://stackoverflow.com/a/3371337/5580816
+        timestamp = (int) (new Date().getTime()/1000);
     }
 
     public Operation(){}
@@ -29,6 +33,14 @@ public class Operation implements IEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 
     public long getOperatorId() {
@@ -69,5 +81,26 @@ public class Operation implements IEntity {
 
     public void setTimestamp(int timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new  StringBuilder();
+        String time = intToDateString(timestamp);
+        sb.append(num1);
+        sb.append(operator);
+        sb.append(num2);
+        sb.append("=");
+        sb.append(res);
+        sb.append(" calculated on ");
+        sb.append(time);
+        return sb.toString();
+    }
+
+    public String intToDateString(int intDate){
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis((long)intDate*1000);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        return sdf.format(date.getTime());
     }
 }

@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteDatabase;
  */
 public class OperationRepo extends Repo<Operation> {
 
-    public OperationRepo(SQLiteDatabase database, String tablename, String[] allColumns) {
+    private OperatorRepo operatorRepo;
+    public OperationRepo(SQLiteDatabase database, String tablename, String[] allColumns, OperatorRepo opRepo) {
         super(database, tablename, allColumns);
+        operatorRepo = opRepo;
     }
 
     @Override
@@ -33,6 +35,8 @@ public class OperationRepo extends Repo<Operation> {
         operation.setNum2(cursor.getFloat(3));
         operation.setRes(cursor.getFloat(4));
         operation.setTimestamp(cursor.getInt(5));
+        Operator operator = operatorRepo.getById(operation.getOperatorId());
+        operation.setOperator(operator.getOperator());
         return operation;
     }
 }

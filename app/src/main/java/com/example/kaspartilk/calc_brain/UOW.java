@@ -26,8 +26,8 @@ public class UOW {
     public void open() throws SQLException {
         database = dbHelper.getWritableDatabase();
         operatorRepo = new OperatorRepo(database, dbHelper.TABLE_OPERATORS, dbHelper.OPERATORS_ALLCOLUMNS);
-        operationRepo = new OperationRepo(database, dbHelper.TABLE_OPERATIONS, dbHelper.OPERATIONS_ALLCOLUMNS);
-        statisticsRepo = new StatisticsRepo(database, dbHelper.TABLE_STATISTICS, dbHelper.STATISTICS_ALLCOLUMNS);
+        operationRepo = new OperationRepo(database, dbHelper.TABLE_OPERATIONS, dbHelper.OPERATIONS_ALLCOLUMNS, operatorRepo);
+        statisticsRepo = new StatisticsRepo(database, dbHelper.TABLE_STATISTICS, dbHelper.STATISTICS_ALLCOLUMNS, operatorRepo);
     }
 
     public void close() {
@@ -54,6 +54,5 @@ public class UOW {
         operatorRepo.add(new Operator("-"));
         operatorRepo.add(new Operator("*"));
         operatorRepo.add(new Operator("/"));
-        statisticsRepo.add(new Statistics(20160413, 1, 1));
     }
 }

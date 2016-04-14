@@ -8,8 +8,7 @@ public class Statistics implements IEntity{
     private int dayStamp;
     private long operatorId;
     private int dayCounter;
-
-//    public String operator;
+    private String operator;
 
     public Statistics(){}
 
@@ -18,10 +17,6 @@ public class Statistics implements IEntity{
         operatorId = opId;
         this.dayCounter = dayCounter;
     }
-
-//    public void setOperator(String operator){
-//        this.operator = operator;
-//    }
 
     public long getId() {
         return id;
@@ -53,5 +48,18 @@ public class Statistics implements IEntity{
 
     public void setDayCounter(int dayCounter) {
         this.dayCounter = dayCounter;
+    }
+
+    @Override
+    public String toString(){
+        return "Date: " + dayStamp + " Operator: " + operator + " Number of operations: " + dayCounter;
+    }
+
+    public String getOperator() {
+        return operator;
+    }
+
+    public void setOperator(String operator) {
+        this.operator = operator;
     }
 }

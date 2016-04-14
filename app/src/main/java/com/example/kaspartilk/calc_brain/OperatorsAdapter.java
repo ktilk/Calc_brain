@@ -13,28 +13,23 @@ import android.widget.TextView;
  */
 public class OperatorsAdapter extends CursorAdapter {
 
-    private final LayoutInflater layoutInflater;
     private UOW uow;
-    private ViewGroup parentViewGroup;
 
     public OperatorsAdapter(Context context, Cursor c, UOW uow) {
         super(context, c, 0);
-        layoutInflater = LayoutInflater.from(context);
         this.uow = uow;
     }
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        final View view = layoutInflater.inflate(R.layout.operator_statistics, parent, false);
-        parentViewGroup = parent;
-        return view;
+        return LayoutInflater.from(context).inflate(R.layout.operator_statistics, parent, false);
     }
-    //TODO bindView
+
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         TextView textViewOperatorData = (TextView) view.findViewById(R.id.operator_statistics);
         Operator operator = uow.operatorRepo.cursorToEntity(cursor);
-        textViewOperatorData.setText("Tehet " + operator.getOperator() + " on kasutatud " + operator.getLifetimeCounter() + " korda.");
+        textViewOperatorData.setText("Operator \"" + operator.getOperator() + "\" has been used " + operator.getLifetimeCounter() + " times.");
     }
 
 }
